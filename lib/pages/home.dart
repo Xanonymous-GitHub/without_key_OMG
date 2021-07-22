@@ -5,6 +5,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Flutter Keys Sharing',
+          style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w900,
+            fontFamily: 'GoogleSans',
+          ),
+        ),
+        backgroundColor: Color(0xFF1ec687),
+      ),
+      body: PageView(),
+    );
   }
 }
