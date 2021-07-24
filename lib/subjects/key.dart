@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:key_sharing/widgets/color_square.dart';
+import 'package:key_sharing/widgets/stateless_color_square.dart';
 
 class DemoSquares {
   DemoSquares()
       : this._squares = [
-          ColorSquare(),
-          ColorSquare(),
+          StatelessColorSquare(),
+          StatelessColorSquare(),
         ];
-  final List<ColorSquare> _squares;
+  final List<StatelessColorSquare> _squares;
 
   void regenerate() {
     _squares[0].regenerateColor();
@@ -24,7 +24,7 @@ class DemoSquares {
     _squares.insert(0, _squares.removeLast());
   }
 
-  List<ColorSquare> get extract {
+  List<StatelessColorSquare> get extract {
     ensureDifferent();
     return _squares;
   }
