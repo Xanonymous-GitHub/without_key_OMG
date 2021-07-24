@@ -4,10 +4,16 @@ import 'package:key_sharing/constants.dart';
 import 'package:key_sharing/utils/reactive_random_color.dart';
 
 class StatefulColorSquare extends StatefulWidget {
-  const StatefulColorSquare({Key? key}) : super(key: key);
+  StatefulColorSquare({Key? key}) : super(key: key);
+
+  final _StatefulColorSquareState state = _StatefulColorSquareState();
+
+  Color get color => state.color;
+
+  void regenerateColor() => state.regenerateColor();
 
   @override
-  _StatefulColorSquareState createState() => _StatefulColorSquareState();
+  _StatefulColorSquareState createState() => state;
 }
 
 class _StatefulColorSquareState extends State<StatefulColorSquare> {

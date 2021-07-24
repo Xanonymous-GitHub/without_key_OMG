@@ -1,34 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:key_sharing/widgets/stateless_color_square.dart';
-
-class DemoSquares {
-  DemoSquares()
-      : this._squares = [
-          StatelessColorSquare(),
-          StatelessColorSquare(),
-        ];
-  final List<StatelessColorSquare> _squares;
-
-  void regenerate() {
-    _squares[0].regenerateColor();
-    _squares[1].regenerateColor();
-  }
-
-  void ensureDifferent() {
-    while (_squares[0].color == _squares[1].color) {
-      regenerate();
-    }
-  }
-
-  void switchColor() {
-    _squares.insert(0, _squares.removeLast());
-  }
-
-  List<StatelessColorSquare> get extract {
-    ensureDifferent();
-    return _squares;
-  }
-}
+import 'package:key_sharing/widgets/demoSquares.dart';
 
 final DemoSquares demoSquares = DemoSquares();
 
@@ -53,19 +24,61 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: demoSquares.extract,
+                  children: [
+                    Text(
+                      'Stateless Squares',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'GoogleSans',
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: demoSquares.extractStateless,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          demoSquares.switchStatelessColor();
+                        });
+                      },
+                      icon: Icon(Icons.compare_arrows),
+                      label: Text('Switch Color'),
+                    )
+                  ],
                 ),
-                ElevatedButton.icon(
-                  onPressed: () {
-                    setState(() {
-                      demoSquares.switchColor();
-                    });
-                  },
-                  icon: Icon(Icons.compare_arrows),
-                  label: Text('Switch Color'),
-                )
+                SizedBox(
+                  height: 40.0,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Stateful Squares',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w900,
+                        fontFamily: 'GoogleSans',
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: demoSquares.extractStateful,
+                    ),
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          demoSquares.switchStatefulColor();
+                        });
+                      },
+                      icon: Icon(Icons.compare_arrows),
+                      label: Text('Switch Color'),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -74,7 +87,8 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            demoSquares.regenerate();
+            demoSquares.regenerateStateless();
+            demoSquares.regenerateStateful();
           });
         },
         child: const Icon(Icons.cached),
