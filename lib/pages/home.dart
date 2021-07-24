@@ -22,6 +22,21 @@ class HomePage extends StatelessWidget {
         LocalKeySubject(),
       ];
 
+  Widget _buildPresentationPages(_, int index) => _presentationPages[index];
+
+  PageStorageKey<int> _getPageStorageKey(int? key) {
+    final Map<int, PageStorageKey<int>> pageStorageKeys = {};
+
+    if (key != null) {
+      if (!pageStorageKeys.containsKey(key)) {
+        pageStorageKeys[key] = PageStorageKey(key);
+      }
+      return pageStorageKeys[key]!;
+    }
+
+    return PageStorageKey(UniqueKey().hashCode);
+  }
+
   List<BottomNavigationBarItem> get _bottomNavigationItems => _tabList.map((_tab) {
         const double iconSize = 30.0;
         return BottomNavigationBarItem(
@@ -54,8 +69,10 @@ class HomePage extends StatelessWidget {
         ),
         backgroundColor: MyTheme.SpecialLimeGreen,
       ),
-      body: PageView(
-        children: _presentationPages,
+      body: PageView.builder(
+        key: _getPageStorageKey(_currentTabIndex.value),
+        itemBuilder: _buildPresentationPages,
+        itemCount: _presentationPages.length,
         controller: _pageController,
         onPageChanged: (newPageIndex) => _currentTabIndex.value = newPageIndex,
       ),
