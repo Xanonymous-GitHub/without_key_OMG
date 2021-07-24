@@ -43,7 +43,7 @@ class DemoSquares {
 
   void ensureStatefulDifferent() {
     while (_statefulSquares[0].color == _statefulSquares[1].color) {
-      regenerateStateless();
+      regenerateStateful();
     }
   }
 
