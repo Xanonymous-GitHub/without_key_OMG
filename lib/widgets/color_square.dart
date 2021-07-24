@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 const double squareSize = 100;
 
+@immutable
 class ColorSquare extends StatelessWidget {
   final ReactiveRandomColor _randomColor = ReactiveRandomColor();
 
@@ -32,6 +33,6 @@ class ReactiveRandomColor {
   Color call() => randomColor.value;
 
   void regenerateColor() {
-    this.randomColor = Colors.primaries[Random().nextInt(Colors.primaries.length)].obs;
+    this.randomColor.value = Colors.primaries[Random().nextInt(Colors.primaries.length)];
   }
 }
