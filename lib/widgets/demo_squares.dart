@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:key_sharing/utils/switch_key.dart';
 import 'package:key_sharing/widgets/stateful_color_square.dart';
 import 'package:key_sharing/widgets/stateless_color_square.dart';
+
+final List<SwitchKey> _switchKeys = [
+  SwitchKey(UniqueKey().hashCode),
+  SwitchKey(UniqueKey().hashCode),
+];
 
 class DemoSquares {
   DemoSquares()
@@ -9,8 +15,8 @@ class DemoSquares {
           StatelessColorSquare(),
         ],
         this._statefulSquares = [
-          StatefulColorSquare(),
-          StatefulColorSquare(),
+          StatefulColorSquare(key: _switchKeys[0]),
+          StatefulColorSquare(key: _switchKeys[1]),
         ];
 
   final List<StatelessColorSquare> _statelessSquares;
@@ -58,15 +64,13 @@ class DemoSquares {
 
   void enableStatefulKey() {
     for (int i = 0; i < _statefulSquares.length; i++) {
-      _statefulSquares.insert(0, StatefulColorSquare(key: UniqueKey()));
-      _statefulSquares.removeLast();
+      _switchKeys[i].enableKeyProvide();
     }
   }
 
   void disableStatefulKey() {
     for (int i = 0; i < _statefulSquares.length; i++) {
-      _statefulSquares.insert(0, StatefulColorSquare());
-      _statefulSquares.removeLast();
+      _switchKeys[i].disableKeyProvide();
     }
   }
 }

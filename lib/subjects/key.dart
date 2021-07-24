@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:key_sharing/themes.dart';
-import 'package:key_sharing/widgets/demoSquares.dart';
+import 'package:key_sharing/widgets/demo_squares.dart';
 
 final DemoSquares demoSquares = DemoSquares();
 
