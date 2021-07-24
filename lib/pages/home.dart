@@ -11,9 +11,9 @@ class HomePage extends StatelessWidget {
   final PageController _pageController = PageController();
 
   final List<TabInfo> _tabList = [
-    TabInfo('Keys', Icons.vpn_key),
-    TabInfo('GlobalKeys', Icons.vpn_key_outlined),
-    TabInfo('LocalKeys', Icons.vpn_key_outlined),
+    TabInfo('Keys', Icons.vpn_key_outlined, Icons.vpn_key),
+    TabInfo('GlobalKeys', Icons.vpn_key_outlined, Icons.vpn_key),
+    TabInfo('LocalKeys', Icons.vpn_key_outlined, Icons.vpn_key),
   ];
 
   List<Widget> get _presentationPages => [
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
             color: MyTheme.gray800,
           ),
           activeIcon: Icon(
-            _tab.iconData,
+            _tab.selectedIconData,
             size: iconSize,
             color: MyTheme.SpecialLimeGreen,
           ),
@@ -93,8 +93,9 @@ class HomePage extends StatelessWidget {
 }
 
 class TabInfo {
-  const TabInfo(this.label, this.iconData);
+  const TabInfo(this.label, this.iconData, this.selectedIconData);
 
   final String label;
   final IconData iconData;
+  final IconData selectedIconData;
 }
