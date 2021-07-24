@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:key_sharing/widgets/stateful_color_square.dart';
 import 'package:key_sharing/widgets/stateless_color_square.dart';
 
@@ -53,5 +54,19 @@ class DemoSquares {
 
   void switchStatefulColor() {
     _statefulSquares.insert(0, _statefulSquares.removeLast());
+  }
+
+  void enableStatefulKey() {
+    for (int i = 0; i < _statefulSquares.length; i++) {
+      _statefulSquares.insert(0, StatefulColorSquare(key: UniqueKey()));
+      _statefulSquares.removeLast();
+    }
+  }
+
+  void disableStatefulKey() {
+    for (int i = 0; i < _statefulSquares.length; i++) {
+      _statefulSquares.insert(0, StatefulColorSquare());
+      _statefulSquares.removeLast();
+    }
   }
 }

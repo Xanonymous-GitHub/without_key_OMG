@@ -97,6 +97,7 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
                           onToggle: (val) {
                             setState(() {
                               enableStatefulKey = val;
+                              val ? demoSquares.enableStatefulKey() : demoSquares.disableStatefulKey();
                             });
                           },
                         ),
