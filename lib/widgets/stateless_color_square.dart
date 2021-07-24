@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:key_sharing/constants.dart';
 import 'package:key_sharing/utils/reactive_random_color.dart';
-
-const double squareSize = 100;
 
 @immutable
 class StatelessColorSquare extends StatelessWidget {
