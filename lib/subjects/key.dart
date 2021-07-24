@@ -3,29 +3,30 @@ import 'package:key_sharing/widgets/color_square.dart';
 
 class DemoSquares {
   DemoSquares()
-      : this.leftSquare = ColorSquare(),
-        this.rightSquare = ColorSquare();
-
-  final ColorSquare leftSquare;
-  final ColorSquare rightSquare;
+      : this._squares = [
+          ColorSquare(),
+          ColorSquare(),
+        ];
+  final List<ColorSquare> _squares;
 
   void regenerate() {
-    leftSquare.regenerateColor();
-    rightSquare.regenerateColor();
+    _squares[0].regenerateColor();
+    _squares[1].regenerateColor();
   }
 
   void ensureDifferent() {
-    while (leftSquare.color == rightSquare.color) {
+    while (_squares[0].color == _squares[1].color) {
       regenerate();
     }
   }
 
+  void switchColor() {
+    _squares.insert(0, _squares.removeLast());
+  }
+
   List<ColorSquare> get extract {
     ensureDifferent();
-    return [
-      leftSquare,
-      rightSquare,
-    ];
+    return _squares;
   }
 }
 
@@ -49,9 +50,23 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
       body: SafeArea(
         child: Container(
           child: Center(
-            child: Row(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: demoSquares.extract,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: demoSquares.extract,
+                ),
+                ElevatedButton.icon(
+                  onPressed: () {
+                    setState(() {
+                      demoSquares.switchColor();
+                    });
+                  },
+                  icon: Icon(Icons.compare_arrows),
+                  label: Text('Switch Color'),
+                )
+              ],
             ),
           ),
         ),
