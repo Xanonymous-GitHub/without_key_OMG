@@ -28,7 +28,7 @@ class DemoSquares {
   }
 
   List<StatefulColorSquare> get extractStateful {
-    ensureStatelessDifferent();
+    ensureStatefulDifferent();
     return _statefulSquares;
   }
 
