@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:key_sharing/themes.dart';
-import 'package:key_sharing/utils/switch_key.dart';
 import 'package:key_sharing/widgets/demo_squares.dart';
 
 final DemoSquares demoSquares = DemoSquares();
@@ -13,13 +12,11 @@ class KeySubject extends StatefulWidget {
   _KeySubjectState createState() => _KeySubjectState();
 }
 
-class _KeySubjectState extends State<KeySubject>
-    with AutomaticKeepAliveClientMixin {
+class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
   bool enableStatefulKey = false;
-  bool usePaddingKey = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +46,11 @@ class _KeySubjectState extends State<KeySubject>
                     ElevatedButton.icon(
                       onPressed: () {
                         setState(() {
-                          demoSquares.switchStatelessSquare();
+                          demoSquares.switchStatelessColor();
                         });
                       },
                       icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Square'),
+                      label: Text('Switch Color'),
                     )
                   ],
                 ),
@@ -78,11 +75,11 @@ class _KeySubjectState extends State<KeySubject>
                     ElevatedButton.icon(
                       onPressed: () {
                         setState(() {
-                          demoSquares.switchStatefulSquare();
+                          demoSquares.switchStatefulColor();
                         });
                       },
                       icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Square'),
+                      label: Text('Switch Color'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -100,88 +97,14 @@ class _KeySubjectState extends State<KeySubject>
                           onToggle: (val) {
                             setState(() {
                               enableStatefulKey = val;
-                              val
-                                  ? demoSquares.enableStatefulKey()
-                                  : demoSquares.disableStatefulKey();
+                              val ? demoSquares.enableStatefulKey() : demoSquares.disableStatefulKey();
                             });
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 0,
-                            horizontal: 10,
-                          ),
+                          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
                           child: Text(
-                            'Key',
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.w900,
-                              fontFamily: 'GoogleSans',
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Stateful Squares In Padding',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'GoogleSans',
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: demoSquares.extractPaddingWithSquares,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          demoSquares.switchPaddingWithSquares();
-                        });
-                      },
-                      icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Square'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        FlutterSwitch(
-                          width: 60.0,
-                          height: 30.0,
-                          valueFontSize: 10.0,
-                          toggleSize: 20.0,
-                          value: usePaddingKey,
-                          borderRadius: 30.0,
-                          padding: 4.0,
-                          showOnOff: true,
-                          activeColor: MyTheme.SpecialLimeGreen,
-                          onToggle: (val) {
-                            setState(() {
-                              usePaddingKey = val;
-                              if (val) {
-                                demoSquares.disableStatefulInPaddingKey();
-                              } else {
-                                demoSquares.enableStatefulInPaddingKey();
-                              }
-                            });
-                          },
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 0,
-                            horizontal: 10,
-                          ),
-                          child: Text(
-                            'Put Key on Padding',
+                            'Flutter Key',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w900,
@@ -203,7 +126,6 @@ class _KeySubjectState extends State<KeySubject>
           setState(() {
             demoSquares.regenerateStateless();
             demoSquares.regenerateStateful();
-            demoSquares.regenerateStatefulInPadding();
           });
         },
         child: const Icon(Icons.cached),

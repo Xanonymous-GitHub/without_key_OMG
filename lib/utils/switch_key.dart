@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SwitchKey<T> extends ValueKey {
-  SwitchKey() : super(UniqueKey().hashCode);
+  SwitchKey(this.value) : super(value);
+
+  final T value;
 
   final List<bool> isKeyProvide = [false];
 
@@ -17,25 +19,11 @@ class SwitchKey<T> extends ValueKey {
   bool operator ==(Object other) {
     if (isKeyProvide[0]) {
       if (other.runtimeType != runtimeType) return false;
-      return other is ValueKey<T> && other.value == super.value;
+      return other is ValueKey<T> && other.value == value;
     }
     return true;
   }
 
   @override
-  int get hashCode => hashValues(runtimeType, super.value);
-}
-
-class SwitchGlobalKey<T extends State<StatefulWidget>> extends SwitchKey {
-  SwitchGlobalKey()
-      : this._globalKey = GlobalKey<T>(),
-        super();
-
-  final GlobalKey<T> _globalKey;
-
-  BuildContext? get currentContext => _globalKey.currentContext;
-
-  Widget? get currentWidget => _globalKey.currentWidget;
-
-  T? get currentState => _globalKey.currentState;
+  int get hashCode => hashValues(runtimeType, value);
 }
