@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:key_sharing/subjects/global_keys/global_key.dart';
-import 'package:key_sharing/subjects/key.dart';
-import 'package:key_sharing/subjects/local_keys/local_key.dart';
+import 'package:key_sharing/demos/key_demo_1.dart';
+import 'package:key_sharing/demos/key_demo_2.dart';
 import 'package:key_sharing/themes.dart';
 
 class HomePage extends StatelessWidget {
@@ -11,15 +10,13 @@ class HomePage extends StatelessWidget {
   final PageController _pageController = PageController();
 
   final List<TabInfo> _tabList = [
-    TabInfo('Keys', Icons.vpn_key_outlined, Icons.vpn_key),
-    TabInfo('GlobalKeys', Icons.vpn_key_outlined, Icons.vpn_key),
-    TabInfo('LocalKeys', Icons.vpn_key_outlined, Icons.vpn_key),
+    TabInfo('Demo 1', Icons.vpn_key_outlined, Icons.vpn_key),
+    TabInfo('Demo 2', Icons.vpn_key_outlined, Icons.vpn_key),
   ];
 
   List<Widget> get _presentationPages => [
-        KeySubject(),
-        GlobalKeySubject(),
-        LocalKeySubject(),
+        KeyDemo1(),
+        KeyDemo2(),
       ];
 
   Widget _buildPresentationPages(_, int index) => _presentationPages[index];

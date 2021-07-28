@@ -5,14 +5,15 @@ import 'package:key_sharing/widgets/demo_squares.dart';
 
 final DemoSquares demoSquares = DemoSquares();
 
-class KeySubject extends StatefulWidget {
-  const KeySubject({Key? key}) : super(key: key);
+class KeyDemo1 extends StatefulWidget {
+  const KeyDemo1({Key? key}) : super(key: key);
 
   @override
-  _KeySubjectState createState() => _KeySubjectState();
+  _KeyDemo1State createState() => _KeyDemo1State();
 }
 
-class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMixin {
+class _KeyDemo1State extends State<KeyDemo1>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -50,7 +51,7 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
                         });
                       },
                       icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Color'),
+                      label: Text('Switch Squares'),
                     )
                   ],
                 ),
@@ -79,7 +80,7 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
                         });
                       },
                       icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Color'),
+                      label: Text('Switch Squares'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -97,12 +98,15 @@ class _KeySubjectState extends State<KeySubject> with AutomaticKeepAliveClientMi
                           onToggle: (val) {
                             setState(() {
                               enableStatefulKey = val;
-                              val ? demoSquares.enableStatefulKey() : demoSquares.disableStatefulKey();
+                              val
+                                  ? demoSquares.enableStatefulKey()
+                                  : demoSquares.disableStatefulKey();
                             });
                           },
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 0, horizontal: 10),
                           child: Text(
                             'Flutter Key',
                             style: TextStyle(
