@@ -28,11 +28,27 @@ class _StatefulContainerState extends State<StatefulContainer> {
 final List<Padding> squareWithPaddingKeyInSquare = [
   Padding(
     padding: const EdgeInsets.all(8.0),
-    child: StatefulContainer(key: UniqueKey()),
+    child: Container(
+      color: Colors.amber,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StatefulContainer(key: UniqueKey()),
+        ),
+      ),
+    ),
   ),
   Padding(
     padding: const EdgeInsets.all(8.0),
-    child: StatefulContainer(key: UniqueKey()),
+    child: Container(
+      color: Colors.red,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StatefulContainer(key: UniqueKey()),
+        ),
+      ),
+    ),
   ),
 ];
 
@@ -40,12 +56,28 @@ final List<Padding> squareWithPaddingKeyInPadding = [
   Padding(
     key: UniqueKey(),
     padding: const EdgeInsets.all(8.0),
-    child: StatefulContainer(),
+    child: Container(
+      color: Colors.amber,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StatefulContainer(),
+        ),
+      ),
+    ),
   ),
   Padding(
     key: UniqueKey(),
     padding: const EdgeInsets.all(8.0),
-    child: StatefulContainer(),
+    child: Container(
+      color: Colors.red,
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: StatefulContainer(),
+        ),
+      ),
+    ),
   ),
 ];
 

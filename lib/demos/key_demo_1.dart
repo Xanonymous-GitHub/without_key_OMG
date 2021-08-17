@@ -108,7 +108,7 @@ class _KeyDemo1State extends State<KeyDemo1>
                           padding: const EdgeInsets.symmetric(
                               vertical: 0, horizontal: 10),
                           child: Text(
-                            'Flutter Key',
+                            'Key',
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.w900,
