@@ -4,19 +4,21 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.13.4 <3.0.0"
+  sdk: ^3.5.2
 
 dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.3
-  get: ^4.3.8
+  cupertino_icons: ^1.0.8
+  get: ^4.6.6
   flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_lints: ^4.0.0
 
 flutter:
 
