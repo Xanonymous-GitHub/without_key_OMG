@@ -3,14 +3,14 @@ import 'package:key_sharing/utils/reactive_random_color.dart';
 
 import '../constants.dart';
 
-class StatefulContainer extends StatefulWidget {
-  const StatefulContainer({Key? key}) : super(key: key);
+final class StatefulContainer extends StatefulWidget {
+  const StatefulContainer({super.key});
 
   @override
-  _StatefulContainerState createState() => _StatefulContainerState();
+  State<StatefulContainer> createState() => _StatefulContainerState();
 }
 
-class _StatefulContainerState extends State<StatefulContainer> {
+final class _StatefulContainerState extends State<StatefulContainer> {
   final ReactiveRandomColor _randomColor = ReactiveRandomColor();
 
   Color get color => _randomColor();
@@ -58,9 +58,9 @@ final List<Padding> squareWithPaddingKeyInPadding = [
     padding: const EdgeInsets.all(8.0),
     child: Container(
       color: Colors.amber,
-      child: Center(
+      child: const Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: StatefulContainer(),
         ),
       ),
@@ -71,9 +71,9 @@ final List<Padding> squareWithPaddingKeyInPadding = [
     padding: const EdgeInsets.all(8.0),
     child: Container(
       color: Colors.red,
-      child: Center(
+      child: const Center(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0),
           child: StatefulContainer(),
         ),
       ),
@@ -81,15 +81,14 @@ final List<Padding> squareWithPaddingKeyInPadding = [
   ),
 ];
 
-class KeyDemo2 extends StatefulWidget {
-  const KeyDemo2({Key? key}) : super(key: key);
+final class KeyDemo2 extends StatefulWidget {
+  const KeyDemo2({super.key});
 
   @override
-  _KeyDemo2State createState() => _KeyDemo2State();
+  State<KeyDemo2> createState() => _KeyDemo2State();
 }
 
-class _KeyDemo2State extends State<KeyDemo2>
-    with AutomaticKeepAliveClientMixin {
+class _KeyDemo2State extends State<KeyDemo2> with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
@@ -104,69 +103,67 @@ class _KeyDemo2State extends State<KeyDemo2>
     super.build(context);
     return Scaffold(
       body: SafeArea(
-        child: Container(
-          child: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Stateful Squares with Padding, Key in Squares',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'GoogleSans',
-                      ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Stateful Squares with Padding, Key in Squares',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'GoogleSans',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: squareWithPaddingKeyInSquare,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: squareWithPaddingKeyInSquare,
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        swapSquareWithPadding(squareWithPaddingKeyInSquare);
+                      });
+                    },
+                    icon: const Icon(Icons.compare_arrows),
+                    label: const Text('Switch Squares'),
+                  ),
+                ],
+              ),
+              // -----
+              const SizedBox(
+                height: 40.0,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Stateful Squares with Padding, Key in Paddings',
+                    style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                      fontFamily: 'GoogleSans',
                     ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          swapSquareWithPadding(squareWithPaddingKeyInSquare);
-                        });
-                      },
-                      icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Squares'),
-                    ),
-                  ],
-                ),
-                // -----
-                SizedBox(
-                  height: 40.0,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Stateful Squares with Padding, Key in Paddings',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'GoogleSans',
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: squareWithPaddingKeyInPadding,
-                    ),
-                    ElevatedButton.icon(
-                      onPressed: () {
-                        setState(() {
-                          swapSquareWithPadding(squareWithPaddingKeyInPadding);
-                        });
-                      },
-                      icon: Icon(Icons.compare_arrows),
-                      label: Text('Switch Squares'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: squareWithPaddingKeyInPadding,
+                  ),
+                  ElevatedButton.icon(
+                    onPressed: () {
+                      setState(() {
+                        swapSquareWithPadding(squareWithPaddingKeyInPadding);
+                      });
+                    },
+                    icon: const Icon(Icons.compare_arrows),
+                    label: const Text('Switch Squares'),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

@@ -4,19 +4,19 @@ import 'package:key_sharing/demos/key_demo_1.dart';
 import 'package:key_sharing/demos/key_demo_2.dart';
 import 'package:key_sharing/themes.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+final class HomePage extends StatelessWidget {
+  HomePage({super.key});
 
   final PageController _pageController = PageController();
 
   final List<TabInfo> _tabList = [
-    TabInfo('Demo 1', Icons.vpn_key_outlined, Icons.vpn_key),
-    TabInfo('Demo 2', Icons.vpn_key_outlined, Icons.vpn_key),
+    const TabInfo('Demo 1', Icons.vpn_key_outlined, Icons.vpn_key),
+    const TabInfo('Demo 2', Icons.vpn_key_outlined, Icons.vpn_key),
   ];
 
   List<Widget> get _presentationPages => [
-        KeyDemo1(),
-        KeyDemo2(),
+        const KeyDemo1(),
+        const KeyDemo2(),
       ];
 
   Widget _buildPresentationPages(_, int index) => _presentationPages[index];
@@ -34,29 +34,29 @@ class HomePage extends StatelessWidget {
     return PageStorageKey(UniqueKey().hashCode);
   }
 
-  List<BottomNavigationBarItem> get _bottomNavigationItems => _tabList.map((_tab) {
+  List<BottomNavigationBarItem> get _bottomNavigationItems => _tabList.map((tab) {
         const double iconSize = 30.0;
         return BottomNavigationBarItem(
-          label: _tab.label,
+          label: tab.label,
           icon: Icon(
-            _tab.iconData,
+            tab.iconData,
             size: iconSize,
             color: MyTheme.gray800,
           ),
           activeIcon: Icon(
-            _tab.selectedIconData,
+            tab.selectedIconData,
             size: iconSize,
-            color: MyTheme.SpecialLimeGreen,
+            color: MyTheme.specialLimeGreen,
           ),
         );
       }).toList();
 
   @override
   Widget build(BuildContext context) {
-    final _currentTabIndex = 0.obs;
+    final currentTabIndex = 0.obs;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Flutter Keys Sharing',
           style: TextStyle(
             fontSize: 30,
@@ -64,24 +64,24 @@ class HomePage extends StatelessWidget {
             fontFamily: 'GoogleSans',
           ),
         ),
-        backgroundColor: MyTheme.SpecialLimeGreen,
+        backgroundColor: MyTheme.specialLimeGreen,
       ),
       body: PageView.builder(
-        key: _getPageStorageKey(_currentTabIndex.value),
+        key: _getPageStorageKey(currentTabIndex.value),
         itemBuilder: _buildPresentationPages,
         itemCount: _presentationPages.length,
         controller: _pageController,
-        onPageChanged: (newPageIndex) => _currentTabIndex.value = newPageIndex,
+        onPageChanged: (newPageIndex) => currentTabIndex.value = newPageIndex,
       ),
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: _bottomNavigationItems,
-          selectedItemColor: MyTheme.SpecialLimeGreen,
-          currentIndex: _currentTabIndex.value,
+          selectedItemColor: MyTheme.specialLimeGreen,
+          currentIndex: currentTabIndex.value,
           onTap: (tabIndex) {
             _pageController.jumpToPage(tabIndex);
-            _currentTabIndex.value = tabIndex;
+            currentTabIndex.value = tabIndex;
           },
         ),
       ),

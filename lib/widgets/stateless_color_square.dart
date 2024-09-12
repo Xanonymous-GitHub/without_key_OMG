@@ -4,8 +4,10 @@ import 'package:key_sharing/constants.dart';
 import 'package:key_sharing/utils/reactive_random_color.dart';
 
 @immutable
-class StatelessColorSquare extends StatelessWidget {
+final class StatelessColorSquare extends StatelessWidget {
   final ReactiveRandomColor _randomColor = ReactiveRandomColor();
+
+  StatelessColorSquare({super.key});
 
   Color get color => _randomColor();
 

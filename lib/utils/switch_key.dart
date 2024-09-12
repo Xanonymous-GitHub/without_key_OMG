@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class SwitchKey<T> extends ValueKey {
-  SwitchKey(this.value) : super(value);
+final class SwitchKey<T> extends ValueKey {
+  SwitchKey(this.selfValue) : super(selfValue);
 
-  final T value;
+  final T selfValue;
 
   final List<bool> isKeyProvide = [false];
 
@@ -25,5 +25,5 @@ class SwitchKey<T> extends ValueKey {
   }
 
   @override
-  int get hashCode => hashValues(runtimeType, value);
+  int get hashCode => Object.hash(runtimeType, selfValue);
 }

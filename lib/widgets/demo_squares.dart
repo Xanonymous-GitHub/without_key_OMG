@@ -8,13 +8,13 @@ final List<SwitchKey> _switchKeys = [
   SwitchKey(UniqueKey().hashCode),
 ];
 
-class DemoSquares {
+final class DemoSquares {
   DemoSquares()
-      : this._statelessSquares = [
+      : _statelessSquares = [
           StatelessColorSquare(),
           StatelessColorSquare(),
         ],
-        this._statefulSquares = [
+        _statefulSquares = [
           StatefulColorSquare(key: _switchKeys[0]),
           StatefulColorSquare(key: _switchKeys[1]),
         ];
